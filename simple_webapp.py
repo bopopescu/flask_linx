@@ -1,5 +1,5 @@
 from flask import Flask, session
-
+from checker import check_logged_in
 
 app = Flask(__name__)
 
@@ -8,12 +8,12 @@ def hello() -> str:
     return 'Hello from the simple webapp!'
 
 @app.route('/page1')
+@check_logged_in
 def page1() -> str:
-    if not check_logged_in():
-        return 'You are NOT logged in.'
     return 'This page 1.'
 
 @app.route('/page2')
+@check_logged_in
 def page2() -> str:
     return 'This page 2.'
 
@@ -28,17 +28,17 @@ def do_logout() -> str:
     return 'You are now logged out.'
 
 # Проверка статуса, авторизован или нет
-@app.route('/status')
-def check_status() -> str:
-    if 'logged_in' in session:
-        return 'You are currently logged in.'
-    return 'You are NOT logged in.'
+#@app.route('/status')
+#def check_status() -> str:
+#    if 'logged_in' in session:
+#        return 'You are currently logged in.'
+#    return 'You are NOT logged in.'
 
 # Функция для проверки вошел ли пользователь в приложение
-def check_logged_in() -> bool:
-    if 'logged_in' in session:
-        return True
-    return False
+#def check_logged_in() -> bool:
+#    if 'logged_in' in session:
+#        return True
+#    return False
 
 
 app.secret_key = 'YouWillNevewGuessMySecretKey'
