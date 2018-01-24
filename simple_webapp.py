@@ -41,7 +41,7 @@ def do_logout() -> str:
 #    return False
 
 
-app.secret_key = 'YouWillNevewGuessMySecretKey'
+# app.secret_key = 'YouWillNevewGuessMySecretKey'
 
 if __name__ == '__main__':
     app.run(debug=True)
